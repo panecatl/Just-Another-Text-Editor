@@ -7,6 +7,14 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 // TODO: Add CSS loaders and babel to webpack.
 
 module.exports = () => {
+  module: {
+    rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ]
+  }
   return {
     mode: 'development',
     entry: {
@@ -44,7 +52,7 @@ module.exports = () => {
         publicPath: '/',
         icons: [
           {
-            src: path.resolve('src/images.logo.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [128, 256, 384],
             destination: path.join('assets', 'icons')
           }
