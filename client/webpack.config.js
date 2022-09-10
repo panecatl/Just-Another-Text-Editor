@@ -7,14 +7,6 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 // TODO: Add CSS loaders and babel to webpack.
 
 module.exports = () => {
-  module: {
-    rules: [
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-    ]
-  }
   return {
     mode: 'development',
     entry: {
@@ -23,11 +15,7 @@ module.exports = () => {
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
-    },
-    output: {
-      filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -53,7 +41,7 @@ module.exports = () => {
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            sizes: [128, 256, 384],
+            sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons')
           }
         ]
@@ -72,7 +60,7 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              presents: ['@babel/present-env'],
+              presets: ['@babel/present-env'],
               plugins: [
                 '@babel/plugin-proposal-object-rest-spread',
                 '@babel/transform-runtime'
